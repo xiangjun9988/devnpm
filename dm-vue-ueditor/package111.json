@@ -1,0 +1,14 @@
+{
+  "name": "dm-vue-ueditor",
+  "version": "1.0.0",
+  "description": "dm-vue-ueditor 是针对vue ueditor组件和封装",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dm-vue-ueditor"
+  ],
+  "author": "daxiang",
+  "license": "ISC"
+}

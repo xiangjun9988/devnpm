@@ -1,18 +1,18 @@
-[![view on npm](http://img.shields.io/npm/v/live-server.svg)](https://www.npmjs.org/package/live-server)
-[![npm module downloads per month](http://img.shields.io/npm/dm/live-server.svg)](https://www.npmjs.org/package/live-server)
-[![build status](https://travis-ci.org/tapio/live-server.svg)](https://travis-ci.org/tapio/live-server)
+[![view on npm](http://img.shields.io/npm/v/dm-server.svg)](https://www.npmjs.org/package/dm-server)
+[![npm module downloads per month](http://img.shields.io/npm/dm/dm-server.svg)](https://www.npmjs.org/package/dm-server)
+[![build status](https://travis-ci.org/tapio/dm-server.svg)](https://travis-ci.org/tapio/dm-server)
 
-Live Server
+demo Server
 ===========
 
-This is a little development server with live reload capability. Use it for hacking your HTML/JavaScript/CSS files, but not for deploying the final site.
+This is a little development server with demo reload capability. Use it for hacking your HTML/JavaScript/CSS files, but not for deploying the final site.
 
 There are two reasons for using this:
 
 1. AJAX requests don't work with the `file://` protocol due to security restrictions, i.e. you need a server if your site fetches content through JavaScript.
 2. Having the page reload automatically after changes to files can accelerate development.
 
-You don't need to install any browser plugins or manually add code snippets to your pages for the reload functionality to work, see "How it works" section below for more information. If you don't want/need the live reload, you should probably use something even simpler, like the following Python-based one-liner:
+You don't need to install any browser plugins or manually add code snippets to your pages for the reload functionality to work, see "How it works" section below for more information. If you don't want/need the demo reload, you should probably use something even simpler, like the following Python-based one-liner:
 
 	python -m SimpleHTTPServer
 
@@ -24,12 +24,12 @@ You need node.js and npm. You should probably install this globally.
 
 **Npm way**
 
-	npm install -g live-server
+	npm install -g dm-server
 
 **Manual way**
 
-	git clone https://github.com/tapio/live-server
-	cd live-server
+	git clone https://github.com/tapio/dm-server
+	cd dm-server
 	npm install # Local dependencies if you want to hack
 	npm install -g # Install globally
 
@@ -37,7 +37,7 @@ You need node.js and npm. You should probably install this globally.
 Usage from command line
 -----------------------
 
-Issue the command `live-server` in your project's directory. Alternatively you can add the path to serve as a command line parameter.
+Issue the command `dm-server` in your project's directory. Alternatively you can add the path to serve as a command line parameter.
 
 This will automatically launch the default browser. When you make a change to any file, the browser will reload the page - unless it was a CSS file in which case the changes are applied without a reload.
 
@@ -69,14 +69,14 @@ Command line parameters:
 
 Default options:
 
-If a file `~/.live-server.json` exists it will be loaded and used as default options for live-server on the command line. See "Usage from node" for option names.
+If a file `~/.dm-server.json` exists it will be loaded and used as default options for dm-server on the command line. See "Usage from node" for option names.
 
 
 Usage from node
 ---------------
 
 ```javascript
-var liveServer = require("live-server");
+var demoServer = require("dm-server");
 
 var params = {
 	port: 8181, // Set the server port. Defaults to 8080.
@@ -90,7 +90,7 @@ var params = {
 	logLevel: 2, // 0 = errors only, 1 = some, 2 = lots
 	middleware: [function(req, res, next) { next(); }] // Takes an array of Connect-compatible middleware that are injected into the server middleware stack
 };
-liveServer.start(params);
+demoServer.start(params);
 ```
 
 HTTPS
@@ -117,11 +117,11 @@ HTTP/2
 ---------------
 
 To get HTTP/2 support one can provide a custom HTTPS module via `--https-module` CLI parameter (`httpsModule` option for Node.js script). **Be sure to install the module first.**
-HTTP/2 unencrypted mode is not supported by browsers, thus not supported by `live-server`. See [this question](https://http2.github.io/faq/#does-http2-require-encryption) and [can I use page on HTTP/2](http://caniuse.com/#search=http2) for more details.
+HTTP/2 unencrypted mode is not supported by browsers, thus not supported by `dm-server`. See [this question](https://http2.github.io/faq/#does-http2-require-encryption) and [can I use page on HTTP/2](http://caniuse.com/#search=http2) for more details.
 
 For example from CLI(bash):
 
-	live-server \
+	dm-server \
 		--https=path/to/https.conf.js \
 		--https-module=spdy \
 		my-app-folder/
@@ -130,7 +130,7 @@ Troubleshooting
 ---------------
 
 * No reload on changes
-	* Open your browser's console: there should be a message at the top stating that live reload is enabled. Note that you will need a browser that supports WebSockets. If there are errors, deal with them. If it's still not working, [file an issue](https://github.com/tapio/live-server/issues).
+	* Open your browser's console: there should be a message at the top stating that demo reload is enabled. Note that you will need a browser that supports WebSockets. If there are errors, deal with them. If it's still not working, [file an issue](https://github.com/tapio/dm-server/issues).
 * Error: watch <PATH> ENOSPC
 	* See [this suggested solution](http://stackoverflow.com/questions/22475849/node-js-error-enospc/32600959#32600959).
 * Reload works but changes are missing or outdated
@@ -190,11 +190,11 @@ Version history
 	- `--browser=BROWSER` cli option to specify browser to use (@sakiv)
 	- Improved error reporting
 	- Basic support for injecting the reload code to SVG files (@dotnetCarpenter, @tapio)
-	- LiveServer.shutdown() function to close down the server and file watchers
+	- demoServer.shutdown() function to close down the server and file watchers
 	- If host parameter is given, use it for browser URL instead of resolved IP
 	- Initial testing framework (@harrytruong, @evanplaice, @tapio)
 * v0.8.2
-	- Load initial settings from `~/.live-server.json` if exists (@mikker)
+	- Load initial settings from `~/.dm-server.json` if exists (@mikker)
 	- Allow `--port=0` to select random port (@viqueen)
 	- Fix injecting when file extension is not lower case (@gusgard)
 	- Fail gracefully if browser does not support WebSockets (@mattymaloney)
@@ -205,7 +205,7 @@ Version history
 	- Once again use 127.0.0.1 instead of 0.0.0.0 as the browser URL
 * v0.8.0
 	- Support multiple clients simultaneously (@dvv)
-	- Pick a random available port if the default is in use (@oliverzy, @harrytruong)
+	- Pick a random available port if the default is in use (@odemorzy, @harrytruong)
 	- Fix Chrome sometimes not applying CSS changes (@harrytruong)
 	- `--ignore=PATH` cli option to not watch given server root relative paths (@richardgoater)
 	- `--entry-file=PATH` cli option to specify file to use when request is not found (@izeau)
@@ -217,14 +217,14 @@ Version history
 	- `--open=PATH` cli option to launch browser in specified path instead of root (@richardgoater)
 	- Library's `noBrowser: true` option is deprecated in favor of `open: false`
 * v0.7.0
-	- API BREAKAGE: LiveServer library now takes parameters in an object
+	- API BREAKAGE: demoServer library now takes parameters in an object
 	- Add possibility to specify host to the lib
 	- Only inject to host page when working with web components (e.g. Polymer) (@davej)
 	- Open browser to 127.0.0.1, as 0.0.0.0 has issues
 	- `--no-browser` command line flag to suppress browser launch
 	- `--help` command line flag to display usage
 * v0.6.4
-	- Allow specifying port from the command line: `live-server --port=3000` (@Pomax)
+	- Allow specifying port from the command line: `dm-server --port=3000` (@Pomax)
 	- Don't inject script as the first thing so that DOCTYPE remains valid (@wmira)
 	- Be more explicit with listening to all interfaces (@inadarei)
 * v0.6.3

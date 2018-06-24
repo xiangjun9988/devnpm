@@ -1,8 +1,8 @@
 {
-  "name": "dm-dev-utils",
-  "version": "1.0.2",
-  "description": "dm-utils是原生库的集合，包含如原生ajax请求，图片上传，上传各大平台接口等",
-  "main": "lib/Utils.js",
+  "name": "dm-vue-highlight",
+  "version": "1.0.0",
+  "description": "dm-vue-highlight",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,8 @@
     "url": "git+https://github.com/xiangjun9988/devnpm.git"
   },
   "keywords": [
-    "dm-util dm-dev-utils"
+    "dm-vue-highlight",
+    "vue-highlight"
   ],
   "author": "daxiang",
   "license": "ISC",

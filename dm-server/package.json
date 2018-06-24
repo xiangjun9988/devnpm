@@ -1,6 +1,6 @@
 {
   "name": "dm-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "简单Http服务器,支持页面自动刷新",
   "keywords": [
     "front-end",
